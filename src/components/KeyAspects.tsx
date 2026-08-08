@@ -22,7 +22,7 @@ export default function KeyAspects() {
         >
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/20 blur-3xl"
+            className="strategic-glow pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 rounded-full bg-accent/20 blur-3xl"
           />
           <div
             className="strategic-ring relative"
@@ -31,9 +31,10 @@ export default function KeyAspects() {
             {strategicAspects.map((aspect, i) => (
               <div
                 key={aspect.id}
-                className="absolute inset-0 flex flex-col justify-between rounded-2xl border border-border bg-surface p-6 shadow-xl [backface-visibility:hidden]"
+                className="strategic-card absolute inset-0 flex flex-col justify-between rounded-2xl border border-border bg-surface p-6 [backface-visibility:hidden]"
                 style={{
                   transform: `rotateY(${i * angleStep}deg) translateZ(${RADIUS}px)`,
+                  animationDelay: `${i * (5 / count)}s`,
                 }}
               >
                 <span className="font-mono text-xs text-text-muted tabular-nums">
@@ -51,7 +52,7 @@ export default function KeyAspects() {
           </div>
         </div>
         <p className="mt-6 text-center text-xs text-text-muted">
-          Hover to pause and read each aspect in full.
+          Hover to pause the tumble and read each aspect in full.
         </p>
       </div>
 
