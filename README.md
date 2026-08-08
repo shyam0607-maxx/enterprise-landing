@@ -1,5 +1,40 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## About this build
+
+An original enterprise-training landing page (App Router, TypeScript, Tailwind CSS v4), built as a scoped exercise: full landing page, nav + footer, mock API-backed lead capture, and deployment on Vercel. Live at https://enterprise-landing-ecru.vercel.app.
+
+### Execution & UI quality
+
+- 14 landing-page sections (hero, domain expertise, programs, segmentation, audience, process, approach, partners, testimonials, FAQ, lead form) plus nav and footer, all responsive from mobile to desktop.
+- Fully responsive nav: link set at `lg`, collapsing to a hamburger menu with scroll-lock below it.
+- Custom light/dark theme via CSS custom properties (`globals.css`), switching automatically with `prefers-color-scheme`.
+- Original inline-SVG illustrations (hero graphic, program icons) instead of stock imagery, so there's nothing to license or misattribute.
+- The "Approach" section uses a hand-built CSS 3D carousel (`perspective` + `rotateY`/`rotateX`) with a hover-to-pause interaction and a static list fallback below `md`, rather than a flat card grid.
+
+### Code structure & readability
+
+- `src/app` — routes and API handlers only (App Router `page.tsx`, `layout.tsx`, `api/*/route.ts`).
+- `src/components` — one component per section, plus a `ui/` folder for cross-cutting primitives.
+- `src/lib` — all copy/content as typed data (`Program`, `Testimonial`, `SegmentDimension`, etc.), kept separate from markup so content changes don't touch component logic.
+- `npm run lint` passes with zero errors; `npm run build` compiles cleanly with no TypeScript errors.
+
+### Component reusability
+
+- `Section` (tone/eyebrow/title/description wrapper) is used by 12 of the page's sections — adding a new section is a matter of writing content + one component, not new layout code.
+- `Button` (primary/secondary/ghost, renders as `<a>` or `<button>`) is shared across the nav, hero, lead form, and section CTAs.
+- `ProgramCard`/`TestimonialCard` separate card presentation from the data arrays they render, so both are driven entirely by `src/lib`.
+
+### Thought process & improvements
+
+- Built section-by-section against the stated scope, then iterated based on feedback (mobile nav overflow, an inline-style/`:hover` cascade bug on the 3D carousel, alternating section tone/rhythm after new sections were inserted).
+- Lead capture (`src/app/api/leads/route.ts`) validates server-side (required fields + email format) and stores submissions in memory — enough to satisfy the bonus API-storage requirement, but noted here as a known limitation: it resets on server restart/redeploy. A real deployment would swap the in-memory array for a database call without touching the form component.
+- Deliberately did not reproduce a real company's name, branding, contact details, or client roster — those requests were declined in favor of original placeholder equivalents, since the brief asked for an inspired build, not a clone.
+
+### Effective use of AI tools
+
+- Built end-to-end with Claude Code: component scaffolding, Tailwind styling, the CSS 3D carousel, responsive nav fixes, and git/GitHub/Vercel operations were all done through iterative AI-assisted prompts and verified with real builds (`npm run build`, `npm run lint`) and live deploys after every change, rather than accepted unverified.
+
 ## Getting Started
 
 First, run the development server:
