@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f6f5f3;
+  --surface: #ffffff;
+  --surface-2: #ede8e6;
+  --text: #201b22;
+  --text-muted: #6a6270;
+  --accent: #3c7a6a;
+  --accent-soft: #dcede7;
+  --navy: #3b2e4a;
+  --navy-2: #241b30;
+  --border: #e3ddd9;
+  --success: #2e7d4f;
+
+  --font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "SF Mono", "Cascadia Code", Consolas, ui-monospace, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14111a;
+    --surface: #1d1824;
+    --surface-2: #241d2e;
+    --text: #edeaf0;
+    --text-muted: #a79fb0;
+    --accent: #55b39e;
+    --accent-soft: #1e2e2a;
+    --navy: #6b5a82;
+    --navy-2: #2f2439;
+    --border: #2c2436;
+    --success: #6fcb8c;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #14111a;
+  --surface: #1d1824;
+  --surface-2: #241d2e;
+  --text: #edeaf0;
+  --text-muted: #a79fb0;
+  --accent: #55b39e;
+  --accent-soft: #1e2e2a;
+  --navy: #6b5a82;
+  --navy-2: #2f2439;
+  --border: #2c2436;
+  --success: #6fcb8c;
+}
+
+:root[data-theme="light"] {
+  --bg: #f6f5f3;
+  --surface: #ffffff;
+  --surface-2: #ede8e6;
+  --text: #201b22;
+  --text-muted: #6a6270;
+  --accent: #3c7a6a;
+  --accent-soft: #dcede7;
+  --navy: #3b2e4a;
+  --navy-2: #241b30;
+  --border: #e3ddd9;
+  --success: #2e7d4f;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-navy: var(--navy);
+  --color-navy-2: var(--navy-2);
+  --color-border: var(--border);
+  --color-success: var(--success);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.55;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
