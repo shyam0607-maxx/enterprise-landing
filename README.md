@@ -28,7 +28,7 @@ An original enterprise-training landing page (App Router, TypeScript, Tailwind C
 ### Thought process & improvements
 
 - Built section-by-section against the stated scope, then iterated based on feedback (mobile nav overflow, an inline-style/`:hover` cascade bug on the 3D carousel, alternating section tone/rhythm after new sections were inserted).
-- Lead capture (`src/app/api/leads/route.ts`) validates server-side (required fields + email format) and stores submissions in memory — enough to satisfy the bonus API-storage requirement, but noted here as a known limitation: it resets on server restart/redeploy. A real deployment would swap the in-memory array for a database call without touching the form component.
+- Lead capture (`src/app/api/leads/route.ts`) validates server-side (required fields + email format) and persists submissions to a real Postgres database (Supabase-provisioned, connected via `POSTGRES_URL`, schema created lazily on first query) — started as an in-memory array to satisfy the bonus requirement quickly, then swapped for a durable store without touching the form component, which only ever talked to the API contract.
 - Deliberately did not reproduce a real company's name, branding, contact details, or client roster — those requests were declined in favor of original placeholder equivalents, since the brief asked for an inspired build, not a clone.
 
 ### Effective use of AI tools
