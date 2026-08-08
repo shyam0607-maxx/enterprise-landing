@@ -25,13 +25,8 @@ export default function KeyAspects() {
             className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/20 blur-3xl"
           />
           <div
-            className="relative hover:[animation-play-state:paused]"
-            style={{
-              width: 280,
-              height: 280,
-              transformStyle: "preserve-3d",
-              animation: "spin3d 32s linear infinite",
-            }}
+            className="strategic-ring relative"
+            style={{ width: 280, height: 280 }}
           >
             {strategicAspects.map((aspect, i) => (
               <div

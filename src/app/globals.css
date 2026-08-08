@@ -117,6 +117,15 @@ textarea:focus-visible {
   }
 }
 
+.strategic-ring {
+  transform-style: preserve-3d;
+  animation: spin3d 32s linear infinite;
+}
+
+.strategic-ring:hover {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
