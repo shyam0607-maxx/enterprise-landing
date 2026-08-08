@@ -108,6 +108,15 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
+@keyframes spin3d {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
