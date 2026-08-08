@@ -6,6 +6,7 @@ export default function Testimonials() {
   return (
     <Section
       id="testimonials"
+      tone="muted"
       eyebrow="Testimonials"
       title="What L&D and engineering leaders actually report back"
     >

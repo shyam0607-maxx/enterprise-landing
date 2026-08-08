@@ -4,6 +4,7 @@ import TrustBar from "@/components/TrustBar";
 import Framework from "@/components/Framework";
 import DomainExpertise from "@/components/DomainExpertise";
 import Programs from "@/components/Programs";
+import CourseSegmentation from "@/components/CourseSegmentation";
 import WhoCanJoin from "@/components/WhoCanJoin";
 import Process from "@/components/Process";
 import WhyUs from "@/components/WhyUs";
@@ -24,6 +25,7 @@ export default function Home() {
         <Framework />
         <DomainExpertise />
         <Programs />
+        <CourseSegmentation />
         <WhoCanJoin />
         <Process />
         <WhyUs />

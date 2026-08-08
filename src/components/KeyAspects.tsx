@@ -5,6 +5,7 @@ export default function KeyAspects() {
   return (
     <Section
       id="strategic-training"
+      tone="muted"
       eyebrow="Approach"
       title="Key aspects of strategic training"
       description="Training programs fail quietly, not loudly — they run to completion and change nothing. These are the parts of the design that keep that from happening."

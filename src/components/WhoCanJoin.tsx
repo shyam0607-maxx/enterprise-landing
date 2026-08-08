@@ -6,7 +6,6 @@ export default function WhoCanJoin() {
   return (
     <Section
       id="who-can-join"
-      tone="muted"
       eyebrow="Who Can Join"
       title="Built for the people who own the training decision — and the people who sit through it"
     >

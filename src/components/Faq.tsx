@@ -8,7 +8,7 @@ export default function Faq() {
   const [openId, setOpenId] = useState<string | null>(faqs[0]?.id ?? null);
 
   return (
-    <Section id="faq" tone="muted" eyebrow="FAQ" title="Common questions from L&D and eng leaders">
+    <Section id="faq" eyebrow="FAQ" title="Common questions from L&D and eng leaders">
       <div className="max-w-2xl divide-y divide-border rounded-2xl border border-border bg-surface">
         {faqs.map((faq) => {
           const isOpen = openId === faq.id;

@@ -5,7 +5,6 @@ export default function WhyUs() {
   return (
     <Section
       id="why-us"
-      tone="muted"
       eyebrow="Why Accredited"
       title="L&D that has to survive contact with a busy quarter"
       description="Most enterprise training loses attention by week two. Here's what we changed about the format to fix that."

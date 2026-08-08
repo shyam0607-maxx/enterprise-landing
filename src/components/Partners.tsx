@@ -5,7 +5,6 @@ export default function Partners() {
   return (
     <Section
       id="partners"
-      tone="muted"
       eyebrow="Our Partners"
       title="Proven with teams who had to see it work"
       description="A sample of results from organizations that have run programs with us — not case studies written after the fact, numbers pulled from the same dashboard your managers would use."

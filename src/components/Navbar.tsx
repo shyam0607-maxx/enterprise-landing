@@ -6,6 +6,7 @@ import Button from "@/components/ui/Button";
 const links = [
   { href: "#domain-expertise", label: "Domain Expertise" },
   { href: "#programs", label: "Programs" },
+  { href: "#course-segmentation", label: "Segmentation" },
   { href: "#who-can-join", label: "Who Can Join" },
   { href: "#strategic-training", label: "Approach" },
   { href: "#testimonials", label: "Testimonials" },

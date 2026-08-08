@@ -5,6 +5,7 @@ export default function Process() {
   return (
     <Section
       id="process"
+      tone="muted"
       eyebrow="How It Works"
       title="From discovery call to a graded program in four steps"
     >
