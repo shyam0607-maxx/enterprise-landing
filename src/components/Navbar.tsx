@@ -16,6 +16,14 @@ const links = [
 export default function Navbar() {
   const [activeId, setActiveId] = useState<string>("");
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -55,7 +63,7 @@ export default function Navbar() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-6">
         <a
           href="#top"
-          className="shrink-0 font-display text-lg font-semibold tracking-tight whitespace-nowrap"
+          className="shrink-0 font-display text-base font-semibold tracking-tight whitespace-nowrap sm:text-lg"
         >
           Accredited <span className="text-accent">Enterprise</span>
         </a>
@@ -79,11 +87,66 @@ export default function Navbar() {
         <Button
           href="#contact"
           variant="primary"
-          className="hidden shrink-0 sm:inline-flex"
+          className="hidden shrink-0 lg:inline-flex"
         >
           Enquire Now
         </Button>
+
+        <button
+          type="button"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          className="flex shrink-0 items-center justify-center rounded-full border border-border p-2 lg:hidden"
+        >
+          <span className="relative block h-4 w-4">
+            <span
+              className={`absolute left-0 top-0.5 block h-0.5 w-4 bg-text transition-transform ${
+                menuOpen ? "translate-y-1.5 rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`absolute left-0 top-2 block h-0.5 w-4 bg-text transition-opacity ${
+                menuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`absolute left-0 top-3.5 block h-0.5 w-4 bg-text transition-transform ${
+                menuOpen ? "-translate-y-1.5 -rotate-45" : ""
+              }`}
+            />
+          </span>
+        </button>
       </div>
+
+      {menuOpen && (
+        <div className="border-t border-border bg-bg lg:hidden">
+          <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-4">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={`rounded-lg px-3 py-2.5 text-sm transition-colors ${
+                  activeId === link.href
+                    ? "text-accent font-semibold"
+                    : "text-text-muted hover:bg-surface-2 hover:text-text"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+            <Button
+              href="#contact"
+              variant="primary"
+              className="mt-3"
+              onClick={() => setMenuOpen(false)}
+            >
+              Enquire Now
+            </Button>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
