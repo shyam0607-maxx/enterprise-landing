@@ -11,7 +11,6 @@ const links = [
   { href: "#strategic-training", label: "Approach" },
   { href: "#testimonials", label: "Testimonials" },
   { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Talk to Us" },
 ];
 
 export default function Navbar() {
@@ -53,17 +52,20 @@ export default function Navbar() {
           : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
-        <a href="#top" className="font-display text-lg font-semibold tracking-tight">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-6">
+        <a
+          href="#top"
+          className="shrink-0 font-display text-lg font-semibold tracking-tight whitespace-nowrap"
+        >
           Accredited <span className="text-accent">Enterprise</span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden flex-1 items-center justify-center gap-5 lg:flex xl:gap-7">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className={`text-sm transition-colors ${
+              className={`whitespace-nowrap text-sm transition-colors ${
                 activeId === link.href
                   ? "text-accent font-semibold"
                   : "text-text-muted hover:text-text"
@@ -74,7 +76,11 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <Button href="#contact" variant="primary" className="hidden sm:inline-flex">
+        <Button
+          href="#contact"
+          variant="primary"
+          className="hidden shrink-0 sm:inline-flex"
+        >
           Enquire Now
         </Button>
       </div>
