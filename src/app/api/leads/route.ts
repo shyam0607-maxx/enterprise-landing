@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { query } from "@/lib/db";
 
 export interface Lead {
   id: string;
@@ -10,16 +11,37 @@ export interface Lead {
   createdAt: string;
 }
 
-// In-memory mock store. Resets on server restart — swap for a real
-// database/CRM call when wiring this up to production.
-const leads: Lead[] = [];
+interface LeadRow {
+  id: string;
+  name: string;
+  email: string;
+  company: string;
+  team_size: string | null;
+  message: string | null;
+  created_at: string;
+}
+
+function toLead(row: LeadRow): Lead {
+  return {
+    id: row.id,
+    name: row.name,
+    email: row.email,
+    company: row.company,
+    teamSize: row.team_size ?? "Unspecified",
+    message: row.message ?? "",
+    createdAt: row.created_at,
+  };
+}
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 export async function GET() {
-  return NextResponse.json({ leads });
+  const rows = await query<LeadRow>(
+    "SELECT * FROM leads ORDER BY created_at DESC"
+  );
+  return NextResponse.json({ leads: rows.map(toLead) });
 }
 
 export async function POST(request: NextRequest) {
@@ -40,17 +62,12 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const lead: Lead = {
-    id: crypto.randomUUID(),
-    name,
-    email,
-    company,
-    teamSize: teamSize ?? "Unspecified",
-    message: message ?? "",
-    createdAt: new Date().toISOString(),
-  };
+  const rows = await query<LeadRow>(
+    `INSERT INTO leads (name, email, company, team_size, message)
+     VALUES ($1, $2, $3, $4, $5)
+     RETURNING *`,
+    [name, email, company, teamSize ?? "Unspecified", message ?? ""]
+  );
 
-  leads.push(lead);
-
-  return NextResponse.json({ lead }, { status: 201 });
+  return NextResponse.json({ lead: toLead(rows[0]) }, { status: 201 });
 }
